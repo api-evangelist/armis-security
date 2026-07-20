@@ -1,0 +1,35 @@
+generated: '2026-07-18'
+method: searched
+source: https://armis-python-sdk.readthedocs.io
+docs: https://armis-python-sdk.readthedocs.io
+summary:
+  types: [oauth2]
+  grant: client_credentials
+  token_format: jwt-bearer
+  multi_tenant: true
+notes: >-
+  Armis uses a client-credentials model: a customer generates a Client ID and
+  Client Secret within their tenant, which the SDK/CLI/MCP clients exchange for a
+  short-lived JWT bearer token (POST /api/v1/auth/token). Requests are made
+  against the tenant host (audience, e.g. https://<tenant>.armis.com/). A
+  Vendor ID identifies the developer account/integration, and scopes may be
+  requested to bound access. A legacy Basic-auth model (API token + tenant id)
+  is still supported by the CLI.
+schemes:
+  - name: clientCredentials
+    type: oauth2
+    flow: clientCredentials
+    token_endpoint: /api/v1/auth/token
+    parameters:
+      - client_id
+      - client_secret
+      - audience   # tenant URL, e.g. https://acme.armis.com/
+      - vendor_id
+      - scopes
+    sources: [armis-sdk-python README, armis-knowledge-mcp README]
+  - name: apiTokenLegacy
+    type: apiKey
+    in: header
+    scheme: basic
+    note: Legacy Basic authentication (ARMIS_API_TOKEN + ARMIS_TENANT_ID), CLI-supported.
+    sources: [armis-cli README]
