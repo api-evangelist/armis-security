@@ -1,0 +1,53 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/ArmisSecurity/armis-cli
+name: armis-cli
+description: >-
+  Enterprise-grade Armis CLI (Go) for static application security scanning with
+  Armis Cloud. Integrates security scanning into developer workflows and CI/CD
+  pipelines; generates CycloneDX SBOM and VEX documents and supports supply-chain
+  protection (blocking recently-published packages across npm, Python, Java).
+repo: https://github.com/ArmisSecurity/armis-cli
+license: Apache-2.0
+language: go
+install:
+  - method: homebrew
+    command: brew install armissecurity/tap/armis-cli
+  - method: script
+    note: Quick install script for Linux/macOS (see repo README).
+authentication:
+  recommended:
+    - flag: --client-id
+      env: ARMIS_CLIENT_ID
+    - flag: --client-secret
+      env: ARMIS_CLIENT_SECRET
+    - flag: --region
+      env: ARMIS_REGION
+  legacy:
+    - flag: --token
+      env: ARMIS_API_TOKEN
+      note: Basic authentication (legacy)
+    - flag: --tenant-id
+      env: ARMIS_TENANT_ID
+output_formats: [human, json, sarif, junit]
+commands:
+  - group: scan repo
+    command: armis-cli scan repo [path]
+    summary: Scan a local directory (tarball uploaded to Armis Cloud for analysis; 2GB limit).
+    notable_flags:
+      - --changed / --changed=staged / --changed=<ref>  # scan only changed files
+      - --sbom
+      - --vex
+      - --sbom-output
+      - --vex-output
+      - --fail-on <severities>
+  - group: scan image
+    command: armis-cli scan image <image>
+    summary: Scan a container image (local or remote) or a tarball.
+global_flags:
+  - --format         # human | json | sarif | junit
+  - --fail-on        # severity levels, default CRITICAL
+  - --exit-code
+  - --page-limit     # results page size, default 500, range 1-1000
+  - --debug
+ci_integrations: [GitHub Actions, Jenkins, GitLab, Azure, Bitbucket, CircleCI]

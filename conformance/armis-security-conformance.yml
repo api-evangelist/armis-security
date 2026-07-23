@@ -1,0 +1,28 @@
+generated: '2026-07-18'
+method: searched
+source: https://trust.armis.com/
+standards:
+  - id: soc2
+    conforms: true
+    evidence: SOC 2 listed at Armis Trust Center (trust.armis.com)
+  - id: iso-27001
+    conforms: true
+    evidence: ISO/IEC 27001 listed at Armis Trust Center
+  - id: iso-27017
+    conforms: true
+    evidence: ISO/IEC 27017 listed at Armis Trust Center
+  - id: iso-27018
+    conforms: true
+    evidence: ISO/IEC 27018 listed at Armis Trust Center
+  - id: fedramp
+    conforms: true
+    evidence: FedRAMP listed at Armis Trust Center
+  - id: csa-star
+    conforms: true
+    evidence: CSA STAR listed at Armis Trust Center
+  - id: oauth2-client-credentials
+    conforms: true
+    evidence: Client-credentials JWT token exchange (POST /api/v1/auth/token) per SDK/MCP clients
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: No public OpenAPI available to confirm application/problem+json error envelope

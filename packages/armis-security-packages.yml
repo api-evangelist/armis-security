@@ -1,0 +1,40 @@
+generated: '2026-07-18'
+method: searched
+source: https://pypi.org/project/armis-sdk/
+packages:
+  - language: python
+    registry: pypi
+    name: armis-sdk
+    url: https://pypi.org/project/armis-sdk/
+    install: pip install armis_sdk
+    repo: https://github.com/ArmisSecurity/armis-sdk-python
+    docs: https://armis-python-sdk.readthedocs.io
+    description: >-
+      Official Armis SDK for Python 3.9+ that encapsulates common use-cases for
+      interacting with the Armis platform via client-credentials (client_id /
+      client_secret / audience / vendor_id / scopes) exchanged for a JWT bearer.
+      Exposes async entity clients (e.g. sites) with sync convenience wrappers.
+    official: true
+  - language: go
+    registry: github
+    name: armis-cli
+    url: https://github.com/ArmisSecurity/armis-cli
+    install: brew install armissecurity/tap/armis-cli
+    description: >-
+      Official Armis CLI (Go) for static application security scanning with
+      Armis Cloud; also distributed as a binary (see cli/ artifact).
+    official: true
+  # Third-party / community — NOT first-party, listed for completeness only.
+  - language: python
+    registry: pypi
+    name: armis
+    url: https://pypi.org/project/armis/
+    install: pip install armis
+    description: Community Python library for the Armis cloud (maintainer mmlange, not Armis).
+    official: false
+  - language: javascript
+    registry: npm
+    name: "@jupiterone/graph-armis"
+    url: https://www.npmjs.com/package/@jupiterone/graph-armis
+    description: JupiterOne integration graph for Armis (third-party, not Armis-published).
+    official: false

@@ -1,0 +1,31 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/ArmisSecurity/armis-sdk-python
+authentication:
+  style: oauth2 client-credentials -> short-lived JWT bearer
+  token_endpoint: /api/v1/auth/token
+  multi_tenant: true
+  audience: tenant URL (e.g. https://<tenant>.armis.com/)
+  ref: authentication/armis-security-authentication.yml
+tenancy:
+  model: per-tenant host
+  note: >-
+    Each customer operates a dedicated tenant at <tenant>.armis.com; the REST API
+    is served under /api/v1 on the tenant host. Vendor ID identifies the calling
+    integration across tenants.
+pagination:
+  observed: page-size control
+  params:
+    - page-limit  # CLI --page-limit, default 500, range 1-1000
+  note: Derived from the Armis CLI global flags; full REST pagination contract not publicly documented.
+scopes:
+  supported: true
+  note: Client credentials may request scopes to bound access; a public scope reference was not found.
+idempotency:
+  supported: unknown
+  note: No documented idempotency-key contract found in public SDK/CLI/MCP surfaces.
+output_formats:
+  cli: [human, json, sarif, junit]
+error_semantics:
+  ref: null
+  note: No public OpenAPI or error-code reference available to capture the error envelope.
