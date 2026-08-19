@@ -3,51 +3,60 @@ method: searched
 status: published
 source: https://github.com/ArmisSecurity/armis-appsec-mcp
 servers:
-  - name: armis-appsec-mcp
-    repo: https://github.com/ArmisSecurity/armis-appsec-mcp
-    transport: stdio
-    description: >-
-      Official Armis AppSec MCP plugin — AI-powered security scanning for Claude
-      Code, Cursor, VS Code (GitHub Copilot), Gemini CLI, GitHub Copilot CLI,
-      Codex CLI and Cline. Scans code, files, and git diffs for vulnerabilities
-      in real-time via the Armis scanning API.
-    auth:
-      type: client-credentials
-      env: [ARMIS_CLIENT_ID, ARMIS_CLIENT_SECRET]
-    tools:
-      - name: scan_code
-        description: Scan a code snippet for vulnerabilities.
-      - name: scan_file
-        description: Scan a file on disk.
-      - name: scan_diff
-        description: Scan git changes (staged, unstaged, or diff against a branch).
-      - name: approve_findings
-        description: Approve findings after user consent (for shipping with known risks).
-      - name: debug_config
-        description: Check scanner configuration status.
-    extras:
-      - Commit gate git pre-commit hook that blocks commits until code is scanned.
-      - "/security-scan Claude Code slash command for on-demand scanning."
-  - name: armis-knowledge-mcp
-    repo: https://github.com/ArmisSecurity/armis-knowledge-mcp
-    transport: streamable-http
-    url: https://knowledge-mcp.moose.armis.com
-    description: >-
-      Official Armis Knowledge MCP (and shell-skills) plugin bundle for Claude
-      Code / Claude Desktop / Cursor. A local stdio bridge exchanges client
-      credentials for a short-lived JWT and forwards JSON-RPC to the remote
-      streamable-HTTP MCP endpoint; tenant is resolved server-side.
-    auth:
-      type: client-credentials
-      token_endpoint: /api/v1/auth/token
-      env: [ARMIS_CLIENT_ID, ARMIS_CLIENT_SECRET]
-    slash_commands:
-      - /knowledge
-      - /ask
-      - /cwe-fix
-      - /framework-guidance
-      - /tech-guidance
-    environments:
-      prod: knowledge-mcp.moose.armis.com
-      stage: knowledge-mcp.moose-stg.armis.com
-      dev: knowledge-mcp.moose-dev.armis.com
+- name: armis-appsec-mcp
+  repo: https://github.com/ArmisSecurity/armis-appsec-mcp
+  transport: stdio
+  description: Official Armis AppSec MCP plugin — AI-powered security scanning for Claude Code, Cursor,
+    VS Code (GitHub Copilot), Gemini CLI, GitHub Copilot CLI, Codex CLI and Cline. Scans code, files,
+    and git diffs for vulnerabilities in real-time via the Armis scanning API.
+  auth:
+    type: client-credentials
+    env:
+    - ARMIS_CLIENT_ID
+    - ARMIS_CLIENT_SECRET
+  tools:
+  - name: scan_code
+    description: Scan a code snippet for vulnerabilities.
+  - name: scan_file
+    description: Scan a file on disk.
+  - name: scan_diff
+    description: Scan git changes (staged, unstaged, or diff against a branch).
+  - name: approve_findings
+    description: Approve findings after user consent (for shipping with known risks).
+  - name: debug_config
+    description: Check scanner configuration status.
+  extras:
+  - Commit gate git pre-commit hook that blocks commits until code is scanned.
+  - /security-scan Claude Code slash command for on-demand scanning.
+- name: armis-knowledge-mcp
+  repo: https://github.com/ArmisSecurity/armis-knowledge-mcp
+  transport: streamable-http
+  url: https://knowledge-mcp.moose.armis.com
+  description: Official Armis Knowledge MCP (and shell-skills) plugin bundle for Claude Code / Claude
+    Desktop / Cursor. A local stdio bridge exchanges client credentials for a short-lived JWT and forwards
+    JSON-RPC to the remote streamable-HTTP MCP endpoint; tenant is resolved server-side.
+  auth:
+    type: client-credentials
+    token_endpoint: /api/v1/auth/token
+    env:
+    - ARMIS_CLIENT_ID
+    - ARMIS_CLIENT_SECRET
+  slash_commands:
+  - /knowledge
+  - /ask
+  - /cwe-fix
+  - /framework-guidance
+  - /tech-guidance
+  environments:
+    prod: knowledge-mcp.moose.armis.com
+    stage: knowledge-mcp.moose-stg.armis.com
+    dev: knowledge-mcp.moose-dev.armis.com
+deployment:
+  mode: none
+  endpoint: https://knowledge-mcp.moose.armis.com
+  verified: probed
+  probe: dead
+  note: the endpoint this manifest claimed did not answer; recorded as none rather than deleted so the
+    claim stays auditable
+  checked: '2026-08-12'
+  source: catalog MCP census
