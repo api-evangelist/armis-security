@@ -14,6 +14,17 @@ description: >-
   FedRAMP, and CSA STAR posture. Surfaced originally as a bain-capital-ventures
   portfolio company and enriched by the API Evangelist pipeline.
 url: https://raw.githubusercontent.com/api-evangelist/armis-security/refs/heads/main/apis.yml
+deliveryModel:
+  model: library
+  open_source: false
+  commercial: false
+  callable_host: false
+  label: Library · distributed through package registries, no callable service
+  confidence: low
+  source:
+  - none
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
